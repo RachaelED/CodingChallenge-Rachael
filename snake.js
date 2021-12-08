@@ -9,6 +9,7 @@ function Snake() {
   // keep track of the length of the tail
   this.total = 0;
   this.tail = [];
+  this.score = 0;
   
   // set the speed in the x and y direction, based on values passed from keyPressed function
   this.dir = function(x, y) {
@@ -43,11 +44,34 @@ function Snake() {
       // if the distance is less than 1
       if (d < 1) {
         // reset the total number of squares to 0
+        this.score = this.total;
         this.total = 0;
         // reset the array to be blank
         this.tail = [];
+        // reset position to (0, 0)
+        this.x = 0;
+        this.y = 0;
+        this.xspeed = 1;
+        this.yspeed = 0;
+        sceneNum = 1;
       }
     }
+    
+  }
+  
+  this.showScore = function() {
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    rect(100, 100, 400, 400);
+    fill(0, 0, 0);
+    if (this.score > highScore) {
+      highScore = this.score;
+      storeItem('highScore', highScore);
+    }
+    text("Game over.", 200, 300);
+    text("Score: " + this.score, 200, 325);
+    // highScore = this.score;
+    text("High score: " + highScore, 200, 350);
   }
   
   // update the position of the snake
