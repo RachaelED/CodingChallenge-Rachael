@@ -4,7 +4,7 @@ function Snake() {
   this.x = 0;
   this.y = 0;
   // define an x and y speed
-  this.xspeed = 1;
+  this.xspeed = 0;
   this.yspeed = 0;
   // keep track of the length of the tail
   this.total = 0;
@@ -51,7 +51,7 @@ function Snake() {
         // reset position to (0, 0)
         this.x = 0;
         this.y = 0;
-        this.xspeed = 1;
+        this.xspeed = 0;
         this.yspeed = 0;
         sceneNum = 1;
       }
@@ -59,19 +59,36 @@ function Snake() {
     
   }
   
+  // display the score
   this.showScore = function() {
     background(0, 0, 0);
     fill(255, 255, 255);
     rect(100, 100, 400, 400);
     fill(0, 0, 0);
+    // if the current score is larger than the value saved as highScore
     if (this.score > highScore) {
+      // set the highScore to this.score
       highScore = this.score;
+      // save the highScore under the tag 'highScore'
       storeItem('highScore', highScore);
     }
-    text("Game over.", 200, 300);
-    text("Score: " + this.score, 200, 325);
-    // highScore = this.score;
-    text("High score: " + highScore, 200, 350);
+    // tell the user "game over"
+    text("Game over.", 190, 275);
+    // display the score
+    text("Score: " + this.score, 190, 300);
+    // display the high score
+    text("High score: " + highScore, 190, 325);
+    // tell the user to "click to play again"
+    text("Click anywhere to play again.", 190, 375);
+  }
+  
+  this.instructions = function() {
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    rect(100, 100, 400, 400);
+    fill(0, 0, 0);
+    text("Press the up, down, left, and right \narrows to move the snake. ", 175, 200);
+    text("Click anywhere to continue.", 175, 300);
   }
   
   // update the position of the snake
