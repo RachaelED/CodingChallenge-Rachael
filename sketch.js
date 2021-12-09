@@ -4,7 +4,7 @@ var s;
 var scl = 20;
 // food variable
 var food;
-var sceneNum = 0;
+var sceneNum = -1;
 // keep track of the high score
 var highScore;
 
@@ -47,7 +47,7 @@ function draw() {
   }
   
   
-  
+  // when sceneNum is 0
   if (sceneNum === 0) {
     // check if the snake has died
     s.death();
@@ -63,7 +63,9 @@ function draw() {
   rect(food.x, food.y, scl, scl);
   
   // show the score AFTER displaying the food so that the rectangle is drawn over the food
-  if (sceneNum === 1) {
+  if (sceneNum === -1) {
+    s.instructions();
+  } else if (sceneNum === 1) {
     s.showScore();
   }
     
@@ -89,7 +91,8 @@ function keyPressed() {
 }
 
 function mousePressed() {
-  if (sceneNum === 1) {
+  // if the instructions or game over scene is displayed and the mouse is clicked, return to game scene
+  if (sceneNum === 1 || sceneNum === -1) {
     sceneNum = 0;
   }
 
