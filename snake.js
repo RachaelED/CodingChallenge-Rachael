@@ -91,6 +91,10 @@ function Snake() {
     fill(0, 0, 0);
     text("Press the up, down, left, and right \narrows to move the snake. ", 175, 200);
     text("Click anywhere to continue.", 175, 300);
+    
+    // display settings icon (x, y, width, height)
+    image(settingsIcon, 530, 20, 50, 50);
+    
   }
   
   // update the position of the snake
