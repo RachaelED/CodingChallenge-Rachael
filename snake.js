@@ -41,6 +41,7 @@ function Snake() {
       var pos = this.tail[i];
       // check the distance between the snake's head and this square in the tail
       var d = dist(this.x, this.y, pos.x, pos.y);
+      
       // if the distance is less than 1
       if (d < 1) {
         // reset the total number of squares to 0
@@ -55,6 +56,7 @@ function Snake() {
         this.yspeed = 0;
         sceneNum = 1;
       }
+      
     }
     
   }
@@ -123,6 +125,7 @@ function Snake() {
       // dray a rectangle at the x and y position in the array
       rect(this.tail[i].x, this.tail[i].y, scl, scl);
     }
+    
     // draw the head of the snake at the x and y position of the snake
     rect(this.x, this.y, scl, scl);
   }
