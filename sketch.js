@@ -8,6 +8,10 @@ var sceneNum = -1;
 // keep track of the high score
 var highScore;
 
+var o = [];
+var numO = 5;
+var tailPos = [];
+
 function setup() {
   // set the canvas to 600px by 600px
   createCanvas(600, 600);
@@ -19,6 +23,8 @@ function setup() {
   pickLocation();
   // recall the high score
   highScore = getItem('highScore');
+  
+  
 }
 
 // Pick a location for the piece of food
@@ -51,6 +57,16 @@ function draw() {
   if (sceneNum === 0) {
     // check if the snake has died
     s.death();
+    
+    for (var i = 0; i < o.length; i++) {
+      var tailPos = s.tail;
+      o[i].show();
+      
+      if (tailPos.length > 0) {
+        o[i].snakeOn(tailPos);
+      }
+    }
+    
     // update the position of the snake
     s.update();
     // show the snake
@@ -94,6 +110,10 @@ function mousePressed() {
   // if the instructions or game over scene is displayed and the mouse is clicked, return to game scene
   if (sceneNum === 1 || sceneNum === -1) {
     sceneNum = 0;
+    // generate new positions for the obstacles
+    for (var i = 0; i < numO; i++) {
+      o[i] = new Obstacle();
+    }
   }
 
 }
