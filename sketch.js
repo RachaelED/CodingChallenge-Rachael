@@ -7,10 +7,14 @@ var food;
 var sceneNum = -1;
 // keep track of the high score
 var highScore;
-
+// create array to store the obstacles
 var o = [];
+// store the number of obstacles
 var numO = 5;
+// array to store the positions of the snake's tail
 var tailPos = [];
+// create variable to store the settings image
+var settingsIcon;
 
 function setup() {
   // set the canvas to 600px by 600px
@@ -23,33 +27,23 @@ function setup() {
   pickLocation();
   // recall the high score
   highScore = getItem('highScore');
-  
-  
+  // load the settings icon
+  settingsIcon = loadImage('cog-147414_1280 (1).png');
 }
 
-// Pick a location for the piece of food
-function pickLocation() {
-  // determine how many columns that are 20px wide are possible
-  var cols = floor(width/scl);
-  // determine how many rows that are 20px wide are possible
-  var rows = floor(height/scl);
-  // pick a random location for the food that falls in column x and row y
-  food = createVector(floor(random(cols)), floor(random(rows)));
-  // multiply the location by the scale factor to place the food in the grid
-  food.mult(scl);
-}
 
 function draw() {
   // set the background
   background(51);
   textSize(18);
   fill(255, 255, 255);
+  // display score and high score
   text("Score: " + s.total, 10, 30);
   text("High Score: " + highScore, 10, 50);
   // if the snake's position is the same as the food's location
   if (s.eat(food)) {
     // pick a new food location
-    pickLocation(); 
+    pickLocation();
   }
   
   
