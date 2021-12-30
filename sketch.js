@@ -16,6 +16,9 @@ var tailPos = [];
 // create variable to store the settings image
 var settingsIcon;
 
+var inp;
+var button;
+
 function setup() {
   // set the canvas to 600px by 600px
   createCanvas(600, 600);
@@ -29,6 +32,12 @@ function setup() {
   highScore = getItem('highScore');
   // load the settings icon
   settingsIcon = loadImage('cog-147414_1280 (1).png');
+  // create input box
+  inp = createInput('');
+  inp.size(0);
+  // create button
+  button = createButton('set');
+  button.size(0);
 }
 
 
@@ -77,6 +86,8 @@ function draw() {
     s.instructions();
   } else if (sceneNum === 1) {
     s.showScore();
+  } else if (sceneNum === 2) {
+    Settings();
   }
     
 }
@@ -102,12 +113,36 @@ function keyPressed() {
 
 function mousePressed() {
   // if the instructions or game over scene is displayed and the mouse is clicked, return to game scene
-  if (sceneNum === 1 || sceneNum === -1) {
+  /*if (sceneNum === 1 || sceneNum === -1) {
     sceneNum = 0;
     // generate new positions for the obstacles
     for (var i = 0; i < numO; i++) {
       o[i] = new Obstacle();
     }
+  }*/
+  
+  // if the instructions or the game scene is displayed and the mouse is clicked, return to the game scene
+  if ((sceneNum === 1 || sceneNum === -1) && (mouseX < 500 && mouseX > 100 && mouseY < 500 && mouseY > 100)) {
+    sceneNum = 0;
+    // generate new positions for the obstacles
+    for (var i = 0; i < numO; i++) {
+      o[i] = new Obstacle();
+    }
+  }
+  
+  // if the main menu screen is displayed and the mouse is clicked, go to the settings scene
+  if (sceneNum === -1 && mouseX < 580 && mouseX > 530 && mouseY < 70 && mouseY > 20) {
+    sceneNum = 2;
+  }
+  
+  // if the settings screen is displayed and the mouse is clicked (back button), return to the main menu screen
+  if (sceneNum === 2 && mouseX < 100 && mouseX > 25 && mouseY < 65 && mouseY > 25) {
+    sceneNum = -1;
+    // remove the input box and the button
+    inp.position(-100, -100);
+    inp.size(0);
+    button.position(-100, -100);
+    button.size(0);
   }
 
 }
