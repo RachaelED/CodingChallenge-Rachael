@@ -23,6 +23,8 @@ function Snake() {
     var d = dist(this.x, this.y, pos.x, pos.y);
     // if they are closer than 1px
     if (d < 1) {
+      // play sound when the snake eats the food
+      eatFoodSound.play();
       // increase the length of the snake (increase the number of squares)
       this.total++;
       // return true (the snake DID eat the food)
@@ -90,7 +92,7 @@ function Snake() {
     rect(100, 100, 400, 400);
     fill(0, 0, 0);
     text("Press the up, down, left, and right \narrows to move the snake. ", 175, 200);
-    text("Click anywhere to continue.", 175, 300);
+    text("Click this box to continue.", 175, 300);
     
     // display settings icon (x, y, width, height)
     image(settingsIcon, 530, 20, 50, 50);
