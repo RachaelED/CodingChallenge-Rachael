@@ -16,8 +16,20 @@ var tailPos = [];
 // create variable to store the settings image
 var settingsIcon;
 
+// store user input (set number of obstacles)
 var inp;
+// store button to "submit" number of obstacles
 var button;
+
+// store the sound to be played when the snake eats food
+var eatFoodSound;
+
+function preload() {
+  // play mp3 files
+  soundFormats('mp3');
+  // set eatFoodSound to point to file 'EatFood-1'.mp3
+  eatFoodSound = loadSound('EatFood-1');
+}
 
 function setup() {
   // set the canvas to 600px by 600px
